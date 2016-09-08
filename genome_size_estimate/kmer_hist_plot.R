@@ -21,7 +21,7 @@ genome.size <- function(jf.file, number.of.reads, k.size, read.length=250, plot.
 
 
 genomes <- data.frame(strain = rep(c('wt','L1','L2'),each=4),
-                      num.reads = rep(c(10960620, 4975018, 5830192), each=4),
+                      num.reads = rep(c(17294959, 14985725, 14197106), each=4),
                       k.size = rep(c(17,21,25,31),3)
                       )
 

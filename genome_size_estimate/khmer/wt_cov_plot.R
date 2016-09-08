@@ -13,18 +13,18 @@ covdata <- read.table(infile, header=F)
 colnames(covdata) <- c('Read', 'Median', 'Mean', 'SD', 'ReadLength')
 
 #Calculate estimated genome size from mode coverage and total sequence length
-total.length <- sum(covdata$ReadLength)
+total.length <- sum(as.numeric(covdata$ReadLength))
 print(paste0('Total sequence length = ', total.length, ' bp'))
 
 total.length.kmers <- sum( covdata$ReadLength - k + 1)
 print(paste0('Total sequence length in kmers = ', total.length.kmers))
 
 #Based on previous histogram, the main peak is at <25 coverage. Use this to get number of 'single copy' reads
-single.copy <- subset(covdata, Median < 25)
-single.copy.length <- sum(single.copy$ReadLength)
+single.copy <- subset(covdata, Median < 25 & Median > 1)
+single.copy.length <- sum( as.numeric(single.copy$ReadLength) )
 print(paste0('Single copy sequence length = ', single.copy.length, ' bp'))
 
-single.copy.length.kmers <- sum( single.copy$ReadLength - k + 1)
+single.copy.length.kmers <- sum( as.numeric(single.copy$ReadLength) - k + 1)
 print(paste0('Single copy sequence length in kmers = ', single.copy.length.kmers))
 
 breaks <- c(1:100, seq(200, 10000, 100), seq(20000,70000, 10000))
